@@ -59,6 +59,8 @@ jobs:
             ~/.cargo/bin/cargo-ndk
             rust/target
           key: rust-android-${{ runner.os }}-${{ hashFiles('rust/Cargo.lock', 'rust/rust-toolchain.toml') }}
+      - name: Test APK verification script
+        run: python3 scripts/test_verify_fork_apk.py
       - name: Install Android toolchain
         run: |
           sdkmanager 'platforms;android-37.0' 'build-tools;37.0.0' 'ndk;28.2.13676358'
