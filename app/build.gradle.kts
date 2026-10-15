@@ -1,5 +1,3 @@
-import de.davis.gradle.plugin.versioning.versionedBy
-import io.github.z4kn4fein.semver.Version
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -8,17 +6,11 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.koin.compiler)
-    alias(libs.plugins.git.semantic.versioning)
     alias(libs.plugins.google.protobuf)
 
     alias(libs.plugins.mikepenz.aboutlibraries)
 }
 
-versioning {
-    minVersion = Version(major = 2, minor = 2)
-}
-
-android versionedBy versioning
 android {
     namespace = "de.davis.keygo"
     compileSdk = libs.versions.compileSdk.get().toInt()
@@ -47,7 +39,15 @@ android {
     }
 
     defaultConfig {
-        applicationId = "de.davis.passwordmanager"
+        applicationId = "dev.citali.keygo"
+        versionCode = 1
+        versionName = "2.2.0-fork.1"
+
+        // Production defaults to ARM64; CI can add x86_64 for an emulator smoke test.
+        ndk {
+            abiFilters += providers.gradleProperty("keygo.abis")
+                .getOrElse("arm64-v8a").split(",")
+        }
         minSdk = 26
         targetSdk = libs.versions.compileSdk.get().toInt()
 

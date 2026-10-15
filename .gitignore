@@ -259,3 +259,10 @@ docs/superpowers/
 
 graphify-out/
 .gitattributes
+
+# Private release signing materials (debug.keystore is an upstream test fixture).
+*.jks
+*.p12
+*.pfx
+*.keystore
+!debug.keystore

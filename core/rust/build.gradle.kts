@@ -9,7 +9,8 @@ android {
 
     defaultConfig {
         ndk {
-            abiFilters += setOf("armeabi-v7a", "arm64-v8a", "x86_64")
+            abiFilters += providers.gradleProperty("keygo.abis")
+                .getOrElse("arm64-v8a").split(",")
         }
     }
 
@@ -52,6 +53,7 @@ val buildRust by tasks.register<Exec>("buildRust") {
     commandLine(
         "make",
         "all",
+        "ABIS=${providers.gradleProperty("keygo.abis").getOrElse("arm64-v8a").replace(",", " ")}",
         "MIN_SDK=${libs.versions.minSdk.get()}",
         "JNI_DIR=${projectDir.resolve("$uniffiDir/jniLibs")}",
         "KOTLIN_OUT=${projectDir.resolve("$uniffiDir/kotlin")}",

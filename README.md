@@ -1,3 +1,10 @@
+> **TherealCitali fork:** independently signed ARM64 builds use `dev.citali.keygo`
+> and install separately from the original KeyGo. Download from
+> [this fork’s releases](https://github.com/TherealCitali/KeyGo/releases).
+> Android 10 is within the declared Android 8+ range; newer platform-only features
+> may not be available on older devices. See [fork build notes](docs/FORK_BUILDS.md).
+> The upstream links below refer to the original project, not this fork.
+
 # KeyGo - Your Secure Digital Vault
 
 [![GitHub release](https://img.shields.io/github/release/OffRange/KeyGo?include_prereleases=&sort=semver)](https://github.com/OffRange/KeyGo/releases/)
